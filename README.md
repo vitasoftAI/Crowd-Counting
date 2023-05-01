@@ -17,3 +17,9 @@ pip install -r requirements.txt
 conda activate imagen
 
 ```
+
+### Training process
+
+```
+python train.py --data_root /path/to/dataset --dataset_file JHU --gpu_id 1
+```
