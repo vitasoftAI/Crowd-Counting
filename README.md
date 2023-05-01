@@ -23,3 +23,10 @@ conda activate imagen
 ```
 python train.py --data_root /path/to/dataset --dataset_file JHU --gpu_id 1
 ```
+
+### Inference
+
+```
+python run_test.py --weight_path /path/to/trained/model --output_dir /path/to/save/results 
+```
+
