@@ -4,7 +4,7 @@ This repository contains a project on counting number of people in crowd using a
 
 ```python
 
-conda create -n <ENV_NAME> python=3.9
+conda create -n <ENV_NAME> python = 3.9
 conda activate <ENV_NAME>
 pip install -r requirements.txt
 
