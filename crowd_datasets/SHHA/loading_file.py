@@ -27,16 +27,28 @@ class DeNormalize(object):
 
 def loading_data(data_root):
     
+    """
     
-    # the pre-proccssing transform
-    transform = standard_transforms.Compose([
-        standard_transforms.ToTensor(), 
-        standard_transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                    std=[0.229, 0.224, 0.225]),
-    ])
-    # create the training dataset
-    train_set = SHHA(data_root, train=True, transform=transform, patch=True, flip=False)
-    # create the validation dataset
-    val_set = SHHA(data_root, train=False, transform=transform)
+    This function gets a path to the data and loads data.
+    
+    Parameter:
+    
+        data_root     - a path to the data, str;
+        
+    Output:
+    
+        train_set     - train dataset, torch dataset object;
+        val_set       - validation dataset, torch dataset object.
+    
+    """
+    
+    # Initialize transformations
+    transform = standard_transforms.Compose([ standard_transforms.ToTensor(), standard_transforms.Normalize(mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225]) ])
+    
+    # Get train dataset
+    train_set = SHHA(data_root, train = True, transform = transform, patch = True, flip = False)
+    
+    # Get validation dataset
+    val_set = SHHA(data_root, train = False, transform = transform)
 
     return train_set, val_set
