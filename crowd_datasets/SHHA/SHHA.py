@@ -10,23 +10,21 @@ shutil.rmtree("/home/ubuntu/workspace/bekhzod/P2P/crowd_datasets/SHHA/test_ims/"
 os.mkdir("/home/ubuntu/workspace/bekhzod/P2P/crowd_datasets/SHHA/test_ims/")
 
 class SHHA(Dataset):
-    def __init__(self, data_root, transform=None, train=False, patch=False, flip=False, im_dim=im_dim):
-        self.root_path = data_root
-        # there may exist multiple list files
+    def __init__(self, data_root, transform = None, train = False, patch = False, flip = False, im_dim = im_dim):
+        
+        self.root_path, self.transform, self.train, self.patch, self.flip, self.im_dim = data_root, transform, train, patch, flip, im_dim
+        
+        # Get train images and gts
         if train:
             self.im_paths = sorted(glob.glob("/home/ubuntu/workspace/bekhzod/DM-Count/datasets/ShanghaiTech/*/train_data/*/*.jpg"))
             self.gt_paths = sorted(glob.glob("/home/ubuntu/workspace/bekhzod/DM-Count/datasets/ShanghaiTech/*/train_data/*/*.mat"))
             print(f"There are {len(self.im_paths)} number of images in train dataset")
+        
+        # Get validation images and gts
         else:
             self.im_paths = sorted(glob.glob("/home/ubuntu/workspace/bekhzod/DM-Count/datasets/ShanghaiTech/*/test_data/*/*.jpg"))
             self.gt_paths = sorted(glob.glob("/home/ubuntu/workspace/bekhzod/DM-Count/datasets/ShanghaiTech/*/test_data/*/*.mat"))
             print(f"There are {len(self.im_paths)} number of images in validation dataset")
-
-        self.transform = transform
-        self.train = train
-        self.patch = patch
-        self.flip = flip
-        self.im_dim = im_dim
 
     def __len__(self): return len(self.im_paths)
 
