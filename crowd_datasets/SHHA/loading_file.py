@@ -1,18 +1,33 @@
+# Import libraries
 import torchvision.transforms as standard_transforms
 from .SHHA import SHHA
 
-# DeNormalize used to get original images
 class DeNormalize(object):
-    def __init__(self, mean, std):
-        self.mean = mean
-        self.std = std
+    
+    """
+    
+    This class gets an object and denormalizes it.
+    
+    Parameter:
+    
+        object   -  an image object, tensor.
+        
+    Output:
+    
+        tensor   - a denormalized image object, tensor.
+    
+    """
+    
+    def __init__(self, mean, std): self.mean, self.std = mean, std
 
     def __call__(self, tensor):
-        for t, m, s in zip(tensor, self.mean, self.std):
-            t.mul_(s).add_(m)
+        for t, m, s in zip(tensor, self.mean, self.std): t.mul_(s).add_(m)
+        
         return tensor
 
 def loading_data(data_root):
+    
+    
     # the pre-proccssing transform
     transform = standard_transforms.Compose([
         standard_transforms.ToTensor(), 
