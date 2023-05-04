@@ -30,12 +30,13 @@ python train.py --data_root /path/to/dataset --dataset_file JHU --gpu_id 1
 python run_test.py --weight_path /path/to/trained/model --output_dir /path/to/save/results 
 ```
 
-Generated sample LPs can be seen below:
+Some inference results can be seen below.
 
 ![Picture2](https://user-images.githubusercontent.com/50166164/236081813-ff21dcea-d952-4e57-bc76-60021f5d25a4.png)
 ![Picture3](https://user-images.githubusercontent.com/50166164/236081829-906283e9-83e4-4194-9d53-842e09edef8a.png)
-
-
-
-![Picture9](https://user-images.githubusercontent.com/50166164/236081777-0a64c138-b382-4310-9fd5-403cc28a29a1.png)
+![Picture4](https://user-images.githubusercontent.com/50166164/236081980-01bdb7bd-b9ca-43f3-adae-7bc62ccc8ff5.png)
+![Picture5](https://user-images.githubusercontent.com/50166164/236081999-df7dd247-dec5-44f5-8596-eddc1d0e5851.png)
+![Picture6](https://user-images.githubusercontent.com/50166164/236082010-cdfefd92-8cb7-4052-9cc6-02c1b28f4832.png)
+![Picture7](https://user-images.githubusercontent.com/50166164/236082018-bedf0e28-c333-4488-ad1e-133eb5b9db49.png)
+![Picture8](https://user-images.githubusercontent.com/50166164/236082037-796e79fb-d3a6-423d-b5bd-fc0b7d6762c5.png)
 
