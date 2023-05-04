@@ -30,6 +30,10 @@ python train.py --data_root /path/to/dataset --dataset_file JHU --gpu_id 1
 python run_test.py --weight_path /path/to/trained/model --output_dir /path/to/save/results 
 ```
 
+Sample Inference output from terminal:
+
+![Picture9](https://user-images.githubusercontent.com/50166164/236082139-2f6fa0c7-cbe5-4092-a4d9-3c1b5b4ecaac.png)
+
 Some inference results can be seen below.
 
 ![Picture2](https://user-images.githubusercontent.com/50166164/236081813-ff21dcea-d952-4e57-bc76-60021f5d25a4.png)
