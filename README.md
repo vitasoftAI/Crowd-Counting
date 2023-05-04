@@ -30,3 +30,12 @@ python train.py --data_root /path/to/dataset --dataset_file JHU --gpu_id 1
 python run_test.py --weight_path /path/to/trained/model --output_dir /path/to/save/results 
 ```
 
+Generated sample LPs can be seen below:
+
+![Picture2](https://user-images.githubusercontent.com/50166164/236081813-ff21dcea-d952-4e57-bc76-60021f5d25a4.png)
+![Picture3](https://user-images.githubusercontent.com/50166164/236081829-906283e9-83e4-4194-9d53-842e09edef8a.png)
+
+
+
+![Picture9](https://user-images.githubusercontent.com/50166164/236081777-0a64c138-b382-4310-9fd5-403cc28a29a1.png)
+
