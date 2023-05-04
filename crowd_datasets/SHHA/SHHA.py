@@ -1,5 +1,4 @@
 # Import libraries
-
 import torch, cv2, glob, os, shutil, random, numpy as np, scipy.io as io
 from torch.utils.data import Dataset
 from PIL import Image
@@ -29,20 +28,22 @@ class SHHA(Dataset):
     def __len__(self): return len(self.im_paths)
 
     def __getitem__(self, index):
-        assert index <= len(self), 'index range error'
+        
+        assert index <= len(self), "index range error"
 
-        img_path = self.im_paths[index]
-        gt_path = self.gt_paths[index]
-        # load image and ground truth
+        # Get image and gt paths
+        img_path, gt_path = self.im_paths[index], self.gt_paths[index]
+        
+        # Get image and gt
         img, point = load_data((img_path, gt_path), self.train)
             
-        # applu augumentation
-        if self.transform is not None:
-            img = self.transform(img)
+        # Ppply augumentations
+        if self.transform is not None: img = self.transform(img)
             
+        # Upsample images and points if their dimensions are smaller than the cropped image dimension
         if img.shape[1] < im_dim or img.shape[2] < im_dim:
             
-            img = torch.nn.functional.upsample_bilinear(img.unsqueeze(0), scale_factor=2).squeeze(0)
+            img = torch.nn.functional.upsample_bilinear(img.unsqueeze(0), scale_factor = 2).squeeze(0)
             point *= 2
 
         if self.train:
