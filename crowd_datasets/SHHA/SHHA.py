@@ -25,10 +25,27 @@ class SHHA(Dataset):
             self.gt_paths = sorted(glob.glob("/home/ubuntu/workspace/bekhzod/DM-Count/datasets/ShanghaiTech/*/test_data/*/*.mat"))
             print(f"There are {len(self.im_paths)} number of images in validation dataset")
 
+    # Get length of the images in the dataset
     def __len__(self): return len(self.im_paths)
 
     def __getitem__(self, index):
         
+        """
+        
+        This function gets an index and returns metadata information.
+        
+        Parameter:
+        
+            index   - index of the dataset, int.
+            
+        Outputs:
+            
+            img     - an image, tensor;
+            target  - corresponding ground information of the image, dict. 
+        
+        """
+        
+        # Assertion
         assert index <= len(self), "index range error"
 
         # Get image and gt paths
