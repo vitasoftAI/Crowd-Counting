@@ -5,9 +5,6 @@ from PIL import Image
 from torchvision import transforms as T
 
 im_dim = 128
-shutil.rmtree("/home/ubuntu/workspace/bekhzod/P2P/crowd_datasets/SHHA/test_ims/")
-os.mkdir("/home/ubuntu/workspace/bekhzod/P2P/crowd_datasets/SHHA/test_ims/")
-
 class SHHA(Dataset):
     def __init__(self, data_root, transform = None, train = False, patch = False, flip = False, im_dim = im_dim):
         
@@ -68,28 +65,26 @@ class SHHA(Dataset):
             scale_range = [0.7, 1.3]
             min_size = min(img.shape[1:])
             scale = random.uniform(*scale_range)
-            # scale the image and points
+            
+            # Scale the image and points
             if scale * min_size > self.im_dim:
                 img = torch.nn.functional.upsample_bilinear(img.unsqueeze(0), scale_factor=scale).squeeze(0)
                 point *= scale
-        # random crop augumentaiton
+        
+        # Random crop augumentaiton
         if self.train and self.patch:
             img, point = random_crop(img, point)
-            for i, _ in enumerate(point):
-                point[i] = torch.Tensor(point[i])
-        # random flipping
+            for i, _ in enumerate(point): point[i] = torch.Tensor(point[i])
+        
+        # Random flipping
         if random.random() > 0.5 and self.train and self.flip:
-            # random flip
-            # img = torch.Tensor(img[:, :, :, ::-1].copy())
+            # Random flip
             img = torch.Tensor(img[:, :, ::-1].copy())
-            for i, _ in enumerate(point):
-                point[i][:, 0] = self.im_dim - point[i][:, 0]
+            for i, _ in enumerate(point): point[i][:, 0] = self.im_dim - point[i][:, 0]
 
-        if not self.train:
-            point = [point]
+        if not self.train: point = [point]
 
-        # img = torch.Tensor(img)
-        # pack up related infos
+        # Pack up related infos
         target = [{} for i in range(len(point))]
         for i, _ in enumerate(point):
             target[i]['point'] = torch.Tensor(point[i])
@@ -101,6 +96,8 @@ class SHHA(Dataset):
         return img, target
 
 def load_data(img_gt_path, train):
+    
+    
     img_path, gt_path = img_gt_path
     # load the images
     img = cv2.imread(img_path)
