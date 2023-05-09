@@ -97,6 +97,21 @@ class SHHA(Dataset):
 
 def load_data(img_gt_path, train):
     
+    """
+    
+    This function gets several parameters and loads the data.
+    
+    Parameters:
+    
+        img_gt_path     - path to ground truth data, str;
+        train           - train option, bool.
+        
+    Outputs:
+    
+        img             - an output image, PIL Image object;
+        points          - points to be detected, array.
+    
+    """
     
     img_path, gt_path = img_gt_path
     # load the images
