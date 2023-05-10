@@ -113,16 +113,18 @@ def load_data(img_gt_path, train):
     
     """
     
+    # Get image and gt paths
     img_path, gt_path = img_gt_path
-    # load the images
-    img = cv2.imread(img_path)
-    img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    # load ground truth points
+    
+    # Load a image from the path
+    img = Image.fromarray(cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB))
+    
+    # Load ground truth points
     coords = io.loadmat(gt_path)["image_info"][0][0][0][0][0]
-    points = []
-    for coord in coords:
-        points.append(coord)
-    # print(np.array(points).shape)
+    
+    # Initialize list to store gt points
+    points = [coord for coord in coords]
+    
     return img, np.array(points)
 
 # random crop augumentation
