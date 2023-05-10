@@ -146,27 +146,35 @@ def random_crop(img, den, num_patch = 2):
     
     """
     
-    half_h = im_dim
-    half_w = im_dim
+    # Get dimensions to crop an input image
+    half_h, half_w = im_dim, im_dim
+    
+    # Create an image filled with zeros
     result_img = torch.zeros([num_patch, img.shape[0], half_h, half_w])
+    # Create a list to store gt points after cropping
     result_den = []
-    # crop num_patch for each image
+    
+    # Crop num_patch for each image
     for i in range(num_patch):
-        # print(img.size(1) - half_h)
-        # print(img.size(2) - half_w)
-        start_h = random.randint(0, img.size(1) - half_h)
-        start_w = random.randint(0, img.size(2) - half_w)
-        end_h = start_h + half_h
-        end_w = start_w + half_w
-        # copy the cropped rect
-        result_img[i] = img[:, start_h:end_h, start_w:end_w]
-        # copy the cropped points
+        
+        # Get start dimensions to crop
+        start_h, start_w = random.randint(0, img.size(1) - half_h), random.randint(0, img.size(2) - half_w)
+        
+        # Get end dimensions to crop
+        end_h, end_w = start_h + half_h, start_w + half_w
+        
+        # Copy the cropped part
+        result_img[i] = img[:, start_h : end_h, start_w : end_w]
+        
+        # Copy the cropped points
         idx = (den[:, 0] >= start_w) & (den[:, 0] <= end_w) & (den[:, 1] >= start_h) & (den[:, 1] <= end_h)
-        # shift the corrdinates
+        
+        # Shift the coordinates
         record_den = den[idx]
         record_den[:, 0] -= start_w
         record_den[:, 1] -= start_h
 
+        # Add the cropped gt points to the list
         result_den.append(record_den)
         
     return result_img, result_den
