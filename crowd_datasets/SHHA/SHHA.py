@@ -127,8 +127,25 @@ def load_data(img_gt_path, train):
     
     return img, np.array(points)
 
-# random crop augumentation
-def random_crop(img, den, num_patch=2):
+def random_crop(img, den, num_patch = 2):
+    
+    """
+    
+    This function gets several parameters and performs random crop operation.
+    
+    Parameters:
+    
+        img          - image to be cropped, tensor;
+        den          - ground truth points, array;
+        num_patch    - number of patches to be cropped, int.
+        
+    Outputs:
+    
+        result_img   - cropped image, tensor
+        result_den   - gt points of the cropped image, list.
+    
+    """
+    
     half_h = im_dim
     half_w = im_dim
     result_img = torch.zeros([num_patch, img.shape[0], half_h, half_w])
