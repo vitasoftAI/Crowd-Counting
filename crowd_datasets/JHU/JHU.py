@@ -1,15 +1,17 @@
-import os
-import random
-import torch
-import numpy as np
+# Import libraries
+import torch, cv2, glob, os, random, numpy as np, scipy.io as io
 from torch.utils.data import Dataset
 from PIL import Image
-import cv2
-import glob
-import scipy.io as io
 from torchvision import transforms as T
 
-def pp(var_name, var, shape=False):
+def pp(var_name, var, shape = False):
+    
+    """
+    
+    This function gets several parameters and prints the variable metadata.
+    
+    
+    """
     if shape:
         print(f"{var_name} -> {var.shape}\n")        
     else:
