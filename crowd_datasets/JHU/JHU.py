@@ -10,12 +10,20 @@ def pp(var_name, var, shape = False):
     
     This function gets several parameters and prints the variable metadata.
     
+    Parameters:
+    
+        var_name     - name to be printed, str;
+        var          - variable, various;
+        shape        - whether or not to print the shape of the variable, bool.
+        
+    Output:
+    
+        metadata     - metadata information of the input variable.
     
     """
-    if shape:
-        print(f"{var_name} -> {var.shape}\n")        
-    else:
-        print(f"{var_name} -> {var}\n")
+    
+    if shape: print(f"{var_name} -> {var.shape}\n")        
+    else: print(f"{var_name} -> {var}\n")
 
 im_dim = 200
 class JHU(Dataset):
