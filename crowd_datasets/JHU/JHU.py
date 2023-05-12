@@ -27,7 +27,22 @@ def pp(var_name, var, shape = False):
 
 im_dim = 200
 class JHU(Dataset):
-    def __init__(self, data_root, transform=None, train=False, patch=False, flip=False, im_dim=im_dim):
+    
+    """
+    
+    This class gets several parameters and returns JHU dataset.
+    
+    Parameters:
+    
+        data_root     - path to directory with data, str;
+        transform     - transformations to be applied to data, transforms object;
+        train         - whether or not the data is used for train, bool;
+        flip          - whether or not to flip the images, bool;
+        im_dim        - image dimensions, int.
+        
+    """
+    
+    def __init__(self, data_root, transform = None, train = False, patch = False, flip = False, im_dim = im_dim):
         
         self.root_path = data_root
         self.transform = transform
