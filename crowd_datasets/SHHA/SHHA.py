@@ -6,6 +6,21 @@ from torchvision import transforms as T
 
 im_dim = 128
 class SHHA(Dataset):
+    
+    """
+    
+    This class gets several parameters and returns SHHA dataset.
+    
+    Parameters:
+    
+        data_root     - path to directory with data, str;
+        transform     - transformations to be applied to data, transforms object;
+        train         - whether or not the data is used for train, bool;
+        flip          - whether or not to flip the images, bool;
+        im_dim        - image dimensions, int.
+        
+    """
+    
     def __init__(self, data_root, transform = None, train = False, patch = False, flip = False, im_dim = im_dim):
         
         self.root_path, self.transform, self.train, self.patch, self.flip, self.im_dim = data_root, transform, train, patch, flip, im_dim
